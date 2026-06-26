@@ -13,18 +13,18 @@ flows:
     waveform_mode: CW
     depth_offset: 7
     sonar_model: EK80
-    datagram_type: MRU1
-    # nmea_sentence: GGA
-    filename_pattern: "DY2601-*.raw" # .raw filename pattern to include
-    path_raw: /Users/phocoena/IWCPS_2026_workflow/IWCPS_2026_data # path to raw files
-    path_main: /Users/phocoena/edge2coud_workflow/2026_IWCPS_output
+    # datagram_type: MRU1
+    nmea_sentence: GGA
+    filename_pattern: "Hake-*.raw" # .raw filename pattern to include
+    path_raw: /home/ctuguinay/echodataflow_test/input_raw # path to raw files
+    path_main: /home/ctuguinay/echodataflow_test/output
     file_Sv_csv: Sv_files.csv
   create_MVBS:
     slice_mins: 20
     num_slices: 3
     range_bin: 0.25m
     ping_time_bin: 5s
-    path_main: /Users/phocoena/edge2coud_workflow/2026_IWCPS_output
+    path_main: /home/ctuguinay/echodataflow_test/output
     file_Sv_csv: Sv_files.csv
     file_MVBS_csv: MVBS_files.csv
   predict_hake:
@@ -33,12 +33,13 @@ flows:
     temperature: 0.5
     softmax_threshold: 0.5
     max_depth: 590.0
-    path_main: "/Volumes/sh2506_ext1/leg2"
+    path_weight: /home/ctuguinay/segmentation_inference/segmentation_inference/test_data/binary_hake_model_weight_test.ckpt
+    path_main: /home/ctuguinay/echodataflow_test/output
     file_MVBS_csv: MVBS_files.csv
     file_prediction_csv: prediction_files.csv
   file_upload_acoustics:
-    src_dir: /Users/phocoena/edge2coud_workflow/2026_IWCPS_output
-    dest_dir: "osn_sdsc_hake:/agr230002-bucket01/prefect_IWCPS_2026/acoustics"
+    src_dir: /home/ctuguinay/echodataflow_test/output
+    dest_dir: osn:/agr230002-bucket01/prefect_test_20260624/output
     exclude_subdirs:
       - Sv
     max_age: 2
