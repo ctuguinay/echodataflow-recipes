@@ -22,7 +22,7 @@ flows:
   create_MVBS:
     slice_mins: 20
     num_slices: 3
-    range_bin: 0.25m
+    range_bin: 1m
     ping_time_bin: 5s
     path_main: /home/ctuguinay/echodataflow_test/output
     file_Sv_csv: Sv_files.csv
